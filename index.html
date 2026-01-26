@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="https://vitejs.dev/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luminous Fish Swarm</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              slate: {
+                850: '#172033',
+                950: '#020617',
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Custom scrollbar for Webkit */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@react-three/fiber": "https://aistudiocdn.com/@react-three/fiber@^9.4.0",
+    "@react-three/drei": "https://aistudiocdn.com/@react-three/drei@^10.7.7",
+    "@react-three/xr": "https://aistudiocdn.com/@react-three/xr@^5.7.1",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "three": "https://aistudiocdn.com/three@^0.181.2",
+    "@react-three/postprocessing": "https://aistudiocdn.com/@react-three/postprocessing@^3.0.4"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
