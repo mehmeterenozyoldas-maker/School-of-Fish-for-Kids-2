@@ -13,7 +13,7 @@ export function createFishMaterial(params: {
     metalness: 0.8, // Increased for liquid metal look
     roughness: 0.15, // Smoother for sharp highlights on the new geometry curves
     emissive: 0x000000,
-    emissiveIntensity: 0.2,
+    emissiveIntensity: 0.2, // Base intensity
     vertexColors: true, // Enable Vertex Colors for Voxel AO
   });
 
@@ -57,7 +57,7 @@ export function createFishMaterial(params: {
     `;
     shader.vertexShader = vsGlobal + shader.vertexShader;
 
-    // 3. Inject Vertex Logic (Tail Sway + Mouse Repulsion/Attraction)
+    // 3. Inject Vertex Logic (Tail Sway + Mouse Interaction)
     shader.vertexShader = shader.vertexShader.replace(
       '#include <begin_vertex>',
       `#include <begin_vertex>
@@ -184,8 +184,6 @@ export function createFishMaterial(params: {
        vec3 finalCol = mix(paletteCol, jitterCol, uJitter);
        
        // Multiply by vertex color (AO from Voxel) if available
-       // R3F/Three usually handles this in color_fragment via vColor, 
-       // but we want to ensure it modulates our custom color.
        #ifdef USE_COLOR
          finalCol *= vColor.rgb;
        #endif
@@ -201,6 +199,7 @@ export function createFishMaterial(params: {
        // Proximity Boost: Glow brighter when near interaction
        float proximityGlow = 1.0 + vProximity * 2.0;
        
+       // Standard multiplier for r150 lighting
        totalEmissiveRadiance = finalCol * 1.5 * pulse * proximityGlow; 
       `
     );

@@ -12,6 +12,14 @@ import { DEFAULT_PARAMS, PRESETS } from './constants';
 import { SimulationParams, AnimationMode } from './types';
 import * as THREE from 'three';
 
+// --- POLYFILL START ---
+// Fix for older Three.js versions (r150) where libraries might expect 'colorspace_fragment' (r154+)
+// We alias it to the old 'encodings_fragment' which performs the same task.
+if (!THREE.ShaderChunk.colorspace_fragment) {
+  THREE.ShaderChunk.colorspace_fragment = THREE.ShaderChunk.encodings_fragment;
+}
+// --- POLYFILL END ---
+
 // Separate component to handle Logic inside Canvas that needs useXR
 const SceneContent: React.FC<{
     params: SimulationParams,
@@ -39,10 +47,10 @@ const SceneContent: React.FC<{
                 color="#ccf0ff" 
             />
             
-            {/* Lighting */}
-            <ambientLight intensity={0.2} color="#001133" />
-            <spotLight position={[10, 20, 10]} intensity={2} penumbra={1} color="#ccf0ff" />
-            <pointLight position={[-10, -10, -10]} intensity={1} color="#0044ff" />
+            {/* Lighting - Standard intensities for Three.js r150 */}
+            <ambientLight intensity={0.6} color="#001133" />
+            <spotLight position={[10, 20, 10]} intensity={1.5} penumbra={1} color="#ccf0ff" />
+            <pointLight position={[-10, -10, -10]} intensity={1.5} color="#0044ff" />
 
             {/* XR Inputs */}
             <Controllers />
