@@ -1,5 +1,7 @@
 {
   "name": "3D of Luminous Fish Swarm",
   "description": "A high-performance 3D instanced mesh simulation of a fish school featuring custom shaders for tail-swaying animation, iridescent color banding, and multiple mathematical movement patterns.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [
+    "xr-spatial-tracking"
+  ]
 }
